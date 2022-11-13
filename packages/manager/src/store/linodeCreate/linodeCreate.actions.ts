@@ -7,7 +7,6 @@ export type CreateTypes =
   | 'fromStackScript'
   | 'fromImage'
   | 'fromBackup'
-  | 'fromLinode'
-  | 'fromYesDone';
+  | 'fromLinode';
 
 export const handleChangeCreateType = actionBase<CreateTypes>('change-type');
