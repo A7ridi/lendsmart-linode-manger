@@ -205,6 +205,7 @@ export class LinodeCreate extends React.PureComponent<
       'Images',
       'Backups',
       'Clone Linode',
+      'Yes Done',
     ];
 
     /** Will be -1 if the query param is not found */
@@ -290,6 +291,11 @@ export class LinodeCreate extends React.PureComponent<
       title: 'Clone Linode',
       type: 'fromLinode',
       routeName: `${this.props.match.url}?type=Clone%20Linode`,
+    },
+    {
+      title: 'Yes Done',
+      type: 'fromYesDone',
+      routeName: `${this.props.match.url}?type=Yes%20Done`,
     },
   ];
 

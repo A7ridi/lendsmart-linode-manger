@@ -840,6 +840,7 @@ const actionsAndLabels = {
   fromBackup: { action: 'backup', labelPayloadKey: 'backup_id' },
   fromImage: { action: 'image', labelPayloadKey: 'image' },
   fromLinode: { action: 'clone', labelPayloadKey: 'type' },
+  fromYesDone: { action: 'yesDone', labelPayloadKey: 'yes_done' },
   fromStackScript: { action: 'stackscript', labelPayloadKey: 'stackscript_id' },
 };
 
