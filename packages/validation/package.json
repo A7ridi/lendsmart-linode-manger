@@ -1,0 +1,73 @@
+{
+  "name": "@linode/validation",
+  "version": "0.16.0",
+  "description": "Yup validation schemas for use with the Linode APIv4",
+  "type": "module",
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/index.js"
+    },
+    "./lib": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/index.js"
+    },
+    "./lib/*": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "types": "./lib/index.d.ts",
+  "browser": "./lib/iife/index.js",
+  "unpkg": "./lib/iife/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "start": "concurrently --raw \"tsc -w --preserveWatchOutput\" \"tsup --watch\"",
+    "build": "concurrently --raw \"tsc\" \"tsup\"",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "lint": "yarn run eslint . --quiet --ext .js,.ts,.tsx",
+    "typecheck": "tsc --noEmit true --emitDeclarationOnly false",
+    "precommit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linode/manager/tree/develop/packages/validation"
+  },
+  "dependencies": {
+    "@types/yup": "^0.29.13",
+    "ipaddr.js": "^2.0.0",
+    "libphonenumber-js": "^1.10.6",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.1",
+    "concurrently": "^4.1.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-ramda": "^2.5.1",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "~2.2.1",
+    "tsup": "^6.2.1"
+  },
+  "keywords": [
+    "linode",
+    "api",
+    "validation"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "prettier --write",
+      "eslint --ext .js,.ts,.tsx",
+      "git add"
+    ],
+    ".{ts,tsx}": [
+      "tsc -p tsconfig.json --noEmit true --emitDeclarationOnly false"
+    ]
+  },
+  "author": "Linode LLC",
+  "license": "Apache-2.0"
+}

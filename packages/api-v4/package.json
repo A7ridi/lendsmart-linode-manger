@@ -1,0 +1,105 @@
+{
+  "name": "@linode/api-v4",
+  "version": "0.81.0",
+  "homepage": "https://github.com/linode/manager/tree/develop/packages/api-v4",
+  "bugs": {
+    "url": "https://github.com/linode/manager/issues"
+  },
+  "keywords": [
+    "linode",
+    "api",
+    "sdk",
+    "api-v4"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linode/manager/tree/develop/packages/api-v4"
+  },
+  "engines": {
+    "node": ">= 14.17.4"
+  },
+  "description": "JavaScript wrapper around the Linode APIv4",
+  "author": "Linode",
+  "license": "Apache-2.0",
+  "private": false,
+  "type": "module",
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/index.js"
+    },
+    "./lib": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/index.js"
+    },
+    "./lib/*": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "types": "./lib/index.d.ts",
+  "browser": "./lib/iife/index.js",
+  "unpkg": "./lib/iife/index.js",
+  "dependencies": {
+    "@linode/validation": "*",
+    "axios": "~0.21.4",
+    "ipaddr.js": "^2.0.0",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "start": "concurrently --raw \"tsc -w --preserveWatchOutput\" \"tsup --watch\"",
+    "build": "concurrently --raw \"tsc\" \"tsup\"",
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "lint": "yarn run eslint . --quiet --ext .js,.ts,.tsx",
+    "typecheck": "tsc --noEmit true --emitDeclarationOnly false",
+    "precommit": "lint-staged"
+  },
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "@swc/jest": "^0.2.22",
+    "@types/jest": "^26.0.13",
+    "@types/node": "^12.7.1",
+    "@types/yup": "^0.29.13",
+    "axios-mock-adapter": "^1.18.1",
+    "concurrently": "^4.1.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-ramda": "^2.5.1",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "jest": "~26.4.2",
+    "lint-staged": "^9.4.2",
+    "prettier": "~2.2.1",
+    "tsup": "^6.2.1"
+  },
+  "resolutions": {
+    "handlebars": "^4.4.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "prettier --write",
+      "eslint --ext .js,.ts,.tsx",
+      "git add"
+    ],
+    ".{ts,tsx}": [
+      "tsc -p tsconfig.json --noEmit true --emitDeclarationOnly false"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(t)sx?$": "@swc/jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
